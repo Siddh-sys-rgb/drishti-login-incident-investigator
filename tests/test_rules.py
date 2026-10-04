@@ -71,3 +71,13 @@ def test_ipv6_canonicalization():
 def test_quiet_false_positive_fixture():
     rows=[row(0,outcome='success'),row(1),row(2,outcome='success'),row(3,user='dev',ip='192.0.2.2')]
     assert replay(rows)['alerts']==[]
+
+def test_evaluation_reports_benign_rule_triggers():
+    from evaluate import evaluate
+    result=evaluate()
+    assert result['matched']==result['scenarios']==6
+    assert result['benign_scenarios_with_signals']==2
+
+def test_extra_fields_are_rejected():
+    data=row();data['arbitrary_secret']='do-not-echo'
+    with pytest.raises(InputError):replay([data])

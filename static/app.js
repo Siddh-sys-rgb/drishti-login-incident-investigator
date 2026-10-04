@@ -5,7 +5,7 @@ function node(tag,text,cls=''){const e=document.createElement(tag);e.textContent
 async function api(path,options={}){const r=await fetch(path,{credentials:'same-origin',...options,headers:{'X-CSRF-Token':csrf,...(options.headers||{})}});const b=await r.json();if(!r.ok)throw new Error(b.error||'Request failed.');return b;}
 function time(t){return new Date(t).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit',timeZone:'UTC'})+' UTC';}
 function choose(alert){selected=alert;$('detail-title').textContent=alert.label;$('detail-note').textContent=alert.note;$('evidence').replaceChildren();
- for(const id of alert.evidence){const e=current.events.find(x=>x.id===id);if(!e)continue;const row=node('div','','evidence-item');row.append(node('strong',e.user+' · '+e.outcome),node('span',time(e.timestamp)+' / '+e.ip),node('span','EVENT '+e.id));$('evidence').append(row);}
+ for(const e of current.events.filter(event=>alert.evidence.includes(event.id))){const row=node('div','','evidence-item');row.append(node('strong',e.user+' · '+e.outcome),node('span',time(e.timestamp)+' / '+e.ip),node('span','EVENT '+e.id));$('evidence').append(row);}
  $('review-form').classList.remove('hidden');$('review-status').value=alert.status;$('annotation').value=alert.annotation;$('investigator').value=alert.investigator||'Meera Desai';$('review-message').textContent='Revision '+alert.revision+' · a lead, not proof of compromise.';
  for(const button of $('alerts').children)button.classList.toggle('selected',button.dataset.id===alert.id);
 }

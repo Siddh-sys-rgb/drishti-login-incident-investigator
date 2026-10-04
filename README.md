@@ -1,5 +1,7 @@
 # Drishti — Login Incident Investigator
 
+[![Tests](https://github.com/Siddh-sys-rgb/drishti-login-incident-investigator/actions/workflows/tests.yml/badge.svg)](https://github.com/Siddh-sys-rgb/drishti-login-incident-investigator/actions/workflows/tests.yml)
+
 An offline Flask investigation atlas for authentication events. Replay JSONL, explain each rule signal with original evidence IDs, record a human triage decision and retain a revision-checked audit trail. The interface uses an indigo and icy-blue timeline design distinct from the companion security project.
 
 The demonstration follows fictional staff at Narmada Supplies in Ahmedabad. Names and events are authored. Every sample IP is a documentation-only address; the app does not probe login systems, perform attacks, query geolocation or transmit events.
@@ -19,7 +21,8 @@ The demonstration follows fictional staff at Narmada Supplies in Ahmedabad. Name
 Use Python **3.11 or 3.12**. Node is optional for the JavaScript syntax check.
 
 ```bash
-cd login-incident-investigator
+git clone https://github.com/Siddh-sys-rgb/drishti-login-incident-investigator.git
+cd drishti-login-incident-investigator
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements-dev.txt
@@ -31,7 +34,8 @@ Open **http://127.0.0.1:8115**. The application binds to localhost with debug of
 ## Run on Windows PowerShell
 
 ```powershell
-cd login-incident-investigator
+git clone https://github.com/Siddh-sys-rgb/drishti-login-incident-investigator.git
+cd drishti-login-incident-investigator
 py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
 .\.venv\Scripts\python.exe app.py --port 8115

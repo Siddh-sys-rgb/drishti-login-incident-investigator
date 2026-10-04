@@ -56,7 +56,7 @@ def parse_events(text):
             duplicate_count += 1
         else:
             seen[event_id] = event
-    return sorted(seen.values(), key=lambda e: (e['timestamp'], e['id'])), duplicate_count
+    return sorted(seen.values(), key=lambda e: (datetime.fromisoformat(e['timestamp'].replace('Z', '+00:00')), e['id'])), duplicate_count
 
 def analyze(text):
     events, duplicates = parse_events(text)
@@ -92,4 +92,4 @@ def analyze(text):
             if len(baseline) >= 2 and e['ip'] not in {x['ip'] for x in baseline}:
                 add('new_ip', baseline[-2:] + [e], e['user'], e)
             prior_success[e['user']].append(e)
-    return {'events': events, 'alerts': sorted(alerts.values(), key=lambda a: (a['timestamp'], a['id'])), 'duplicates': duplicates, 'input_events': len(events) + duplicates, 'event_count': len(events)}
+    return {'events': events, 'alerts': sorted(alerts.values(), key=lambda a: (datetime.fromisoformat(a['timestamp'].replace('Z', '+00:00')), a['id'])), 'duplicates': duplicates, 'input_events': len(events) + duplicates, 'event_count': len(events)}

@@ -26,7 +26,7 @@ def parse_events(text):
         raise InputError('Use at most 1,000 events.')
     for index, line in enumerate(rows, 1):
         try:
-            row = json.loads(line)
+            row = json.loads(line, parse_constant=lambda value: (_ for _ in ()).throw(ValueError()))
             if not isinstance(row, dict):
                 raise ValueError()
             if set(row) != {'timestamp', 'user', 'ip', 'outcome'}:
@@ -80,7 +80,7 @@ def analyze(text):
                     del alerts[k]
                 add('password_spray', current, e['ip'], e)
         else:
-            failures = [x for x in failure_pairs[pair] if 0 <= t - seconds(x) <= 900]
+            failures = [x for x in failure_pairs[pair] if 0 < t - seconds(x) <= 900]
             burst = []
             for last in reversed(failures):
                 candidates = [x for x in failures if 0 <= seconds(last) - seconds(x) <= 300]

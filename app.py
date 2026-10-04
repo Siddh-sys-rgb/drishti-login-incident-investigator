@@ -23,7 +23,7 @@ def create_app(data_dir=None, testing=False, no_demo=False):
         except FileExistsError:
             pass
     app.config.update(SECRET_KEY=key_path.read_text().strip(), TESTING=testing,
-        SESSION_drishti_session='drishti_session', SESSION_COOKIE_HTTPONLY=True,
+        SESSION_COOKIE_NAME='drishti_session', SESSION_COOKIE_HTTPONLY=True,
         SESSION_COOKIE_SAMESITE='Strict', MAX_CONTENT_LENGTH=400000,
         TRUSTED_HOSTS=['localhost', '127.0.0.1'], DB=str(root / 'data.sqlite3'))
     storage.initialize(app.config['DB'])

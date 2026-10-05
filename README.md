@@ -6,7 +6,11 @@ An offline Flask investigation atlas for authentication events. Replay JSONL, ex
 
 The demonstration follows fictional staff at Narmada Supplies in Ahmedabad. Names and events are authored. Every sample IP is a documentation-only address; the app does not probe login systems, perform attacks, query geolocation or transmit events.
 
-![Drishti desktop investigation atlas](docs/screenshots/desktop.png)
+![Drishti desktop investigation atlas](docs/screenshots/overview.jpg)
+
+![Drishti completed workflow](docs/screenshots/workflow.jpg)
+
+![Drishti mobile demo](docs/screenshots/mobile.jpg)
 
 ## What works
 
@@ -151,3 +155,5 @@ CI runs Python 3.11/3.12, pytest with a 94% coverage floor, dependency checks, e
 The [OWASP Logging Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html) provides context for event evidence and verification, and the [OWASP Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html) discusses authentication security and monitoring. This project does not claim certification or implement a full SIEM.
 
 Useful next steps: trusted event IDs and adapters, adjustable thresholds with a held-out corpus, verified long-term baselines, retention/deletion controls and an authenticated investigator workflow. Keep thresholds explainable and measure benign triggers when extending the engine.
+
+See [browser verification](docs/BROWSER_CHECKS.md) for the recorded workflow and mobile checks.
